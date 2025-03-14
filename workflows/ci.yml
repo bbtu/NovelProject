@@ -1,0 +1,9 @@
+name: 设定一致性校验
+on: [push]
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 校验JSON语法
+        run: find docs -name "*.json" | xargs -I{} jq . {} > /dev/null
