@@ -1,0 +1,12 @@
+name: Narrative Integrity Check
+on: [push, pull_request]
+
+jobs:
+  worldbuilding-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 时空连续性校验
+        uses: narrative-engine/world-validator@v3
+        with:
+          config-path: docs/project_manifest.json
