@@ -1,0 +1,16 @@
+# .github/workflows/narrative-sync.yml
+name: Narrative Sync
+on: 
+  schedule:
+    - cron: '0 12 * * 1-5'  # 每周一至五12点自动生成
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 叙事演进
+        uses: narrative-engine/generate@v3
+        with:
+          output-dir: chapters/vol1
+          daily-quota: 5000  # 每日生成字数
